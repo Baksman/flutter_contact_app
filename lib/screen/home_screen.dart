@@ -1,8 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:contactapp/screen/call_log_screen.dart';
-import 'package:contactapp/screen/contact_screen.dart';
-import 'package:contactapp/screen/sms_page.dart';
+//import 'package:contactapp/screen/call_log_4screen/call_log_screen.dart';
+import 'package:contactapp/screen/call_log_screen/call_log_screen.dart';
+import 'package:contactapp/screen/contact_screen/contact_screen.dart';
+import 'package:contactapp/screen/sms_screen/sms_page.dart';
 import 'package:flutter/material.dart';
+
 
 class HomeScreen extends StatefulWidget {
   @override

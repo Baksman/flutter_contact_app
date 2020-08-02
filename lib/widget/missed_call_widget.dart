@@ -27,7 +27,7 @@ class _MissedCallWidgetState extends State<MissedCallWidget> {
                   itemBuilder: (context, index) {
                     bool isNotNull =
                         snapshot.data[index]?.name != null ?? false;
-                    print("the length is ${snapshot.data.length}");
+
                     return ListTile(
                       contentPadding: EdgeInsets.all(10),
                       trailing: Icon(

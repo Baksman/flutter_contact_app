@@ -1,8 +1,7 @@
+
 import 'package:contactapp/widget/all_calls_widget.dart';
 import 'package:contactapp/widget/missed_call_widget.dart';
 import 'package:flutter/material.dart';
-
-
 
 class CallLogScreen extends StatefulWidget {
   @override

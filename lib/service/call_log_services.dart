@@ -19,7 +19,10 @@ class CallsLogservices {
       return CallLogModel(
           name: val.name,
           phoneNumber: val.formattedNumber,
-          duration: val.duration);
+          duration: val.duration
+          );
     }).toList();
   }
+
+  
 }

@@ -6,15 +6,10 @@ class ContactServices {
   static Future<List<ContactModel>> getContact() async {
     Iterable<Contact> contacts =
         await ContactsService.getContacts(withThumbnails: false);
-    return contacts
-    // .takeWhile((val) {
-    //  return val.displayName == null;
-    //  //return true;
-    // })
-    .map((Contact val) {
-      print("the .....${val.phones.toList().toString()}");
+    return contacts.map((Contact val) {
       return ContactModel(
-          phoneNumber: val.phones.toString()[0] ?? "   ", name: val.displayName ?? "  ");
+          phoneNumber: val.phones.toString()[0] ?? "",
+          name: val.displayName ?? "");
     }).toList();
   }
 
