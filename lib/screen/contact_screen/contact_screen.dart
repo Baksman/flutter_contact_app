@@ -10,7 +10,7 @@ class ContactScreen extends StatefulWidget {
 class _ContactScreenState extends State<ContactScreen> {
 // SlidableController slidableController;
   int currentPage = 0;
-  
+
   @override
   void initState() {
     // SlidableController()
@@ -25,32 +25,39 @@ class _ContactScreenState extends State<ContactScreen> {
         setState(() {});
       }),
       body: FutureBuilder(
-          initialData: [],
+          // initialData: [],
           future: ContactServices.getContact(),
           builder: (context, snapshot) {
-            if (snapshot.data != null) {
+            if (snapshot.hasData) {
               return ListView.separated(
-                  reverse: true,
+                  // reverse: true,
                   separatorBuilder: (context, int) {
                     return Divider();
                   },
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
-                    if ((snapshot.data[index]?.name?.substring(0, 2) != null ??
-                            false) &&
-                        (snapshot?.data[index].name != null ?? false)) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                            child: Text(
-                                "${snapshot.data[index]?.name?.substring(0, 2)} " ??
-                                    "")),
-                        title: Text(snapshot?.data[index].name ?? ""),
-                      );
+                      if ((snapshot.data[index]?.name?.substring(0, ) != null ??
+                              false) &&
+                          (snapshot?.data[index].name != null ?? false)) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                              // child: Text(
+                              //     "${snapshot.data[index]?.name?.substring(0, 2)} " ??
+                              //         "")
+                                      ),
+                          title: Text(snapshot?.data[index].name ?? ""),
+                        );
+                      }
+                      return Offstage();
                     }
-                    return Offstage();
-                  });
+                  //   return ListTile();
+                  // }
+                  );
             }
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(
+                  backgroundColor: Theme.of(context).primaryColor),
+            );
           }),
     );
   }

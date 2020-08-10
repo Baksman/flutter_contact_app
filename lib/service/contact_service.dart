@@ -6,7 +6,9 @@ class ContactServices {
   static Future<List<ContactModel>> getContact() async {
     Iterable<Contact> contacts =
         await ContactsService.getContacts(withThumbnails: false);
-    return contacts.map((Contact val) {
+    return contacts.where((Contact val) {
+      return (val.phones.isNotEmpty);
+    }).map((Contact val) {
       return ContactModel(
           phoneNumber: val.phones.toString()[0] ?? "",
           name: val.displayName ?? "");

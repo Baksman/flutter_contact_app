@@ -17,30 +17,31 @@ class _ReceivedSmsScreenState extends State<ReceivedSmsScreen> {
         if (!snapshot.hasData) {
           return Center(
               child: CircularProgressIndicator(
-            backgroundColor: Colors.teal,
+            backgroundColor: Theme.of(context).primaryColor,
           ));
-        }
-
-        if (snapshot.data.length == 0) {
+        } else if (snapshot.data.length == 0) {
           return Center(
             child: Text("You dont have any text message"),
           );
         }
 
-        return ListView.builder(itemBuilder: (context, index) {
-          SmsMessage smsMessage = snapshot.data[index];
-          return ListTile(
-            onTap: () {
-              toDetailsScreen(smsMessage);
-            },
-            trailing: trailingIcon(smsMessage.kind),
-            title: Text("${smsMessage.body}"),
-            leading: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/place_holder.png"),
-              backgroundColor: Colors.teal,
-            ),
-          );
-        });
+        return Expanded(
+          // height: 300,
+          child: ListView.builder(itemBuilder: (context, index) {
+            SmsMessage smsMessage = snapshot.data[index];
+            return ListTile(
+              onTap: () {
+                toDetailsScreen(smsMessage);
+              },
+              trailing: trailingIcon(smsMessage.kind),
+              title: Text("${smsMessage.address}"),
+              leading: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/place_holder.png"),
+                backgroundColor: Colors.teal,
+              ),
+            );
+          }),
+        );
       },
     );
   }
