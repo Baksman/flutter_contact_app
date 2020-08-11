@@ -29,6 +29,9 @@ dependencies:
   bottom_navy_bar: ^5.3.2
   sms: ^0.2.4
   font_awesome_flutter: ^8.8.1
+  numeric_keyboard: ^1.0.0
+  bubble: ^1.1.9+1
+  share: ^0.6.4+3
   
 
 dev_dependencies:

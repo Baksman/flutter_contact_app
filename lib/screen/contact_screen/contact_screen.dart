@@ -21,35 +21,36 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        setState(() {});
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   setState(() {});
+      // }),
       body: FutureBuilder(
-          // initialData: [],
           future: ContactServices.getContact(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
-                  // reverse: true,
+
                   separatorBuilder: (context, int) {
                     return Divider();
                   },
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
-                      if ((snapshot.data[index]?.name?.substring(0, ) != null ??
-                              false) &&
-                          (snapshot?.data[index].name != null ?? false)) {
-                        return ListTile(
-                          leading: CircleAvatar(
-                              // child: Text(
-                              //     "${snapshot.data[index]?.name?.substring(0, 2)} " ??
-                              //         "")
-                                      ),
-                          title: Text(snapshot?.data[index].name ?? ""),
-                        );
-                      }
-                      return Offstage();
+                    if ((snapshot.data[index]?.name?.substring(
+                                  0,
+                                ) !=
+                                null ??
+                            false) &&
+                        (snapshot?.data[index].name != null ?? false)) {
+                      return ListTile(
+                        leading: CircleAvatar(
+                            child: Text(
+                                "${snapshot.data[index]?.name?.substring(0, 2)} " ??
+                                    "")),
+                        title: Text(snapshot?.data[index].name ?? ""),
+                      );
                     }
+                    return Offstage();
+                  }
                   //   return ListTile();
                   // }
                   );

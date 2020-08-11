@@ -29,11 +29,13 @@ class _ReceivedSmsScreenState extends State<ReceivedSmsScreen> {
           // height: 300,
           child: ListView.builder(itemBuilder: (context, index) {
             SmsMessage smsMessage = snapshot.data[index];
+            
             return ListTile(
               onTap: () {
                 toDetailsScreen(smsMessage);
               },
-              trailing: trailingIcon(smsMessage.kind),
+              subtitle: Text("${smsMessage.body}",overflow: TextOverflow.ellipsis,),
+              trailing: smsMessage.isRead ? Icon(Icons.done_all,color:Colors.blue,) : Icon(Icons.done),
               title: Text("${smsMessage.address}"),
               leading: CircleAvatar(
                 backgroundImage: AssetImage("assets/images/place_holder.png"),

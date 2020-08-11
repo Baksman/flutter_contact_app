@@ -2,9 +2,10 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 //import 'package:contactapp/screen/call_log_4screen/call_log_screen.dart';
 import 'package:contactapp/screen/call_log_screen/call_log_screen.dart';
 import 'package:contactapp/screen/contact_screen/contact_screen.dart';
+import 'package:contactapp/screen/settings/settinsgs_screen.dart';
 import 'package:contactapp/screen/sms_screen/sms_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:numeric_keyboard/numeric_keyboard.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -55,6 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.message),
                 title: Text('Messages'),
                 activeColor: Colors.blue),
+            BottomNavyBarItem(
+                icon: Icon(Icons.settings),
+                title: Text('Settings'),
+                activeColor: Colors.blue),
           ],
         ),
         backgroundColor: Colors.white,
@@ -65,9 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 25,
             ),
             onPressed: () {
-              setState(() {});
+              NumericKeyboard(onKeyboardTap: (String val) {
+                print(val);
+              });
             }),
         body: PageView(
+          physics: NeverScrollableScrollPhysics(),
           controller: pageController,
           onPageChanged: (int index) {
             setState(() {
@@ -78,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
             CallLogScreen(),
             ContactScreen(),
             SmsScreen(),
+            SettingsSCreen()
           ],
         ));
   }

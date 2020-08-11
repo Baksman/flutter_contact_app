@@ -1,5 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-
+import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:contactapp/screen/home_screen.dart';
 //import 'package:contactapp/screen/contact_screen.dart';
 import 'package:contactapp/widget/all_calls_widget.dart';
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
   }
@@ -36,38 +37,41 @@ class _HomeState extends State<Home> {
           onItemSelected: (index) {
             setState(() {
               currentIndex = index;
-              
             });
           },
-          items: [
-            BottomNavyBarItem(
-              icon: Icon(Icons.apps),
-              title: Text('Home'),
-              activeColor: Colors.blue,
-              inactiveColor: Colors.grey,
-              
-            ),
-          
-            BottomNavyBarItem(
-                icon: Icon(Icons.people),
-                title: Text('Users'),
-                activeColor: Colors.blue),
-            BottomNavyBarItem(
-                icon: Icon(Icons.message),
-                title: Text('Messages'),
-                activeColor: Colors.blue),
-          ],
+          // items: [
+          //   BottomNavyBarItem(
+          //     icon: Icon(Icons.apps),
+          //     title: Text('Home'),
+          //     activeColor: Colors.blue,
+          //     inactiveColor: Colors.grey,
+          //   ),
+          //   BottomNavyBarItem(
+          //       icon: Icon(Icons.people),
+          //       title: Text('Contacts'),
+          //       activeColor: Colors.blue),
+          //   BottomNavyBarItem(
+          //       icon: Icon(Icons.message),
+          //       title: Text('Messages'),
+          //       activeColor: Colors.blue),
+          //       BottomNavyBarItem(
+          //       icon: Icon(Icons.settings),
+          //       title: Text('Settings'),
+          //       activeColor: Colors.blue),
+          // ],
         ),
         backgroundColor: Colors.white,
-        floatingActionButton: FloatingActionButton(
-            child: Icon(
-              Icons.keyboard,
-              color: Colors.white,
-              size: 25,
-            ),
-            onPressed: () {
-              setState(() {});
-            }),
+        // floatingActionButton: FloatingActionButton(
+        //     child: Icon(
+        //       Icons.keyboard,
+        //       color: Colors.white,
+        //       size: 25,
+        //     ),
+        //     onPressed: () {
+        //       NumericKeyboard(onKeyboardTap: (String val) {
+        //         print(val);
+        //       });
+        //     }),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -83,7 +87,8 @@ class _HomeState extends State<Home> {
                       child: Text(
                         "All",
                         style: TextStyle(
-                            color: currentIndex == 0 ? Colors.black : Colors.grey),
+                            color:
+                                currentIndex == 0 ? Colors.black : Colors.grey),
                       )),
                   FlatButton(
                       onPressed: () {
@@ -94,7 +99,8 @@ class _HomeState extends State<Home> {
                       child: Text(
                         "Missed",
                         style: TextStyle(
-                            color: currentIndex == 1 ? Colors.black : Colors.grey),
+                            color:
+                                currentIndex == 1 ? Colors.black : Colors.grey),
                       )),
                   Spacer(),
                   Icon(Icons.search)

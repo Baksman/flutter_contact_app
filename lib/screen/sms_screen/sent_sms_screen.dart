@@ -1,7 +1,7 @@
 import 'package:contactapp/screen/sms_screen/sms_detail_screen.dart';
 import 'package:contactapp/service/sms_service.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sms/sms.dart';
 
 class SentSmsScreen extends StatefulWidget {
@@ -20,34 +20,41 @@ class _SentSmsScreenState extends State<SentSmsScreen> {
               child: CircularProgressIndicator(
             backgroundColor: Colors.teal,
           ));
-        }
-
-       else if (snapshot.data.length == 0) {
+        } else if (snapshot.data.length == 0) {
           return Center(
             child: Text("You dont have any text message"),
           );
         }
 
         return Expanded(
-        //  height:300,
+          //  height:300,
           child: ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-            SmsMessage smsMessage = snapshot.data[index];
-            return ListTile(
-              onTap: () {
-                toDetailsScreen(smsMessage);
-              },
-              trailing: smsMessage.isRead ? Icon(Icons.done_all,color:Colors.blue,) : Icon(Icons.done),
-              //trailing: trailingIcon(smsMessage.kind),
-              title: Text("${smsMessage.address}"),
-              subtitle: Text("${smsMessage.body}"),
-              leading: CircleAvatar(
-                backgroundImage: AssetImage("assets/images/place_holder.png"),
-                backgroundColor: Colors.teal,
-              ),
-            );
-          }),
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                SmsMessage smsMessage = snapshot.data[index];
+                return ListTile(
+                  onTap: () {
+                    toDetailsScreen(smsMessage);
+                  },
+                  trailing: smsMessage.isRead
+                      ? Icon(
+                          Icons.done_all,
+                          color: Colors.blue,
+                        )
+                      : Icon(Icons.done),
+                  //trailing: trailingIcon(smsMessage.kind),
+                  title: Text("${smsMessage.address}"),
+                  subtitle: Text(
+                    "${smsMessage.body}",
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage:
+                        AssetImage("assets/images/place_holder.png"),
+                    backgroundColor: Colors.teal,
+                  ),
+                );
+              }),
         );
       },
     );
@@ -63,6 +70,7 @@ class _SentSmsScreenState extends State<SentSmsScreen> {
   }
 
   toDetailsScreen(SmsMessage smsMessage) {
+  
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return MessageDetailsScreen(smsMessage);
     }));
