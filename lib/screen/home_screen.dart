@@ -29,9 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+  bool  isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
+    
         bottomNavigationBar: BottomNavyBar(
-          backgroundColor: Colors.grey[200],
+         // backgroundColor: Colors.grey[200],
           selectedIndex: currentIndex,
           showElevation: true, // use this to remove appBar's elevation
           onItemSelected: (index) {
@@ -45,24 +48,27 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavyBarItem(
               icon: Icon(Icons.apps),
               title: Text('Home'),
-              activeColor: Colors.blue,
-              inactiveColor: Colors.grey,
+              activeColor:isDark ? Colors.white:Colors.blue,
+              inactiveColor: isDark ? Colors.white:Colors.blue,
             ),
             BottomNavyBarItem(
                 icon: Icon(Icons.people),
                 title: Text('Users'),
-                activeColor: Colors.blue),
+                activeColor:isDark ? Colors.white:Colors.blue,
+                ),
             BottomNavyBarItem(
                 icon: Icon(Icons.message),
                 title: Text('Messages'),
-                activeColor: Colors.blue),
+               activeColor:isDark ? Colors.white:Colors.blue,
+                ),
             BottomNavyBarItem(
                 icon: Icon(Icons.settings),
                 title: Text('Settings'),
-                activeColor: Colors.blue),
+               activeColor:isDark ? Colors.white:Colors.blue,
+                ),
           ],
         ),
-        backgroundColor: Colors.white,
+      //  backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
             child: Icon(
               Icons.keyboard,

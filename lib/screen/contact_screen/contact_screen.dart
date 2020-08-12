@@ -20,7 +20,7 @@ class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+  //   backgroundColor: Colors.white,
       // floatingActionButton: FloatingActionButton(onPressed: () {
       //   setState(() {});
       // }),
@@ -44,7 +44,7 @@ class _ContactScreenState extends State<ContactScreen> {
                       return ListTile(
                         leading: CircleAvatar(
                             child: Text(
-                                "${snapshot.data[index]?.name?.substring(0, 2)} " ??
+                                "${snapshot.data[index]?.name?.substring(0, 1)} " ??
                                     "")),
                         title: Text(snapshot?.data[index].name ?? ""),
                       );

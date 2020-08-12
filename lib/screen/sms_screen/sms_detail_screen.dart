@@ -13,21 +13,20 @@ class MessageDetailsScreen extends StatefulWidget {
 }
 
 class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
-  TextEditingController _controller = TextEditingController();
+  TextEditingController _textController = TextEditingController();
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final text = "";
-  bool isTextEmpty = true;
+  bool isEmpty = true;
   @override
   void initState() {
-    _controller.addListener(() {
-      if (text.isEmpty) {
-        setState(() {
-          isTextEmpty = true;
-        });
-      } else {
-        setState(() {
-          isTextEmpty = false;
-        });
+     isEmpty = _textController.text.trim().isEmpty;
+    _textController.addListener(() {
+      if (isEmpty != _textController.text.trim().isEmpty) {
+        if (mounted) {
+          setState(() {
+            isEmpty = _textController.text.trim().isEmpty;
+          });
+        }
       }
     });
     super.initState();
@@ -61,7 +60,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                   padding: BubbleEdges.all(10),
                   radius: Radius.circular(10),
                   //  style: BubbleStyle(),
-                  child: Text(widget.smsMessage.body),
+                  child: Text(widget.smsMessage.body,style:TextStyle(color: Colors.black) ,),
                 )
               ],
             ),
@@ -72,7 +71,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    controller: _controller,
+                    controller: _textController,
                   ),
                 ),
                 IconButton(

@@ -2,13 +2,11 @@
 import 'package:share/share.dart' as sh;
 import 'package:call_log/call_log.dart';
 import 'package:contactapp/model/call_log_model.dart';
-//import 'package:contactapp/model/contact_model.dart';
 import 'package:contactapp/service/call_log_services.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-// import 'package:share/share.dart';
-//import 'package:contacts_service/contacts_service.dart';
+
 
 class AllCallsWidget extends StatefulWidget {
   @override
@@ -34,7 +32,6 @@ class _AllCallsWidgetState extends State<AllCallsWidget> {
           child: FutureBuilder(
             future: CallsLogservices.getAllCallLogs(),
             builder: (context, snapshot) {
-              print("build gets called");
               if (snapshot.data != null) {
                 return ListView.builder(
                     itemCount: snapshot.data.length,
@@ -68,7 +65,7 @@ class _AllCallsWidgetState extends State<AllCallsWidget> {
                             color: Colors.indigo,
                             icon: Icons.share,
                             onTap: () {
-                              sh.Share.share( '');
+                              sh.Share.share('abracdabra');
                             },
                           ),
                         ],
@@ -105,7 +102,7 @@ class _AllCallsWidgetState extends State<AllCallsWidget> {
                                 color: snapshot.data[index].callType ==
                                         CallType.missed
                                     ? Colors.red
-                                    : Colors.black),
+                                    : Theme.of(context).textTheme.bodyText1.color),
                           ),
                           subtitle: Text(
                             "${snapshot.data[index].duration} seconds" ?? "",
@@ -113,14 +110,16 @@ class _AllCallsWidgetState extends State<AllCallsWidget> {
                                 color: snapshot.data[index].callType ==
                                         CallType.missed
                                     ? Colors.red
-                                    : Colors.black),
+                                    : Theme.of(context).textTheme.bodyText1.color),
                           ),
                         ),
                       );
                     });
               }
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  backgroundColor: Theme.of(context).primaryColor,
+                ),
               );
             },
           ),
@@ -129,7 +128,7 @@ class _AllCallsWidgetState extends State<AllCallsWidget> {
     );
   }
 
-  _trailingWidget(CallLogModel model) {
+ Icon _trailingWidget(CallLogModel model) {
     if (model.callType == CallType.missed) {
       return Icon(
         Icons.call_missed,
@@ -148,6 +147,7 @@ class _AllCallsWidgetState extends State<AllCallsWidget> {
     } else if (model.callType == CallType.rejected) {
       return Icon(Icons.call_end, color: Colors.teal);
     }
+    return Icon(Icons.block, color: Colors.teal);
   }
 
   _showDialog(CallLogModel model) {

@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:contactapp/screen/home_screen.dart';
 //import 'package:contactapp/screen/contact_screen.dart';
@@ -11,9 +12,24 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return DynamicTheme(
+      defaultBrightness: Brightness.light,
+      data: (brightness) => ThemeData(
+          brightness: brightness,
+          //backgroundcolor
+        //  scaffoldBackgroundColor: Colors.transparent,
+          primaryIconTheme:
+              Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
+          primarySwatch: Colors.blue,
+          accentColor: Colors.blue,
+         // cursorColor: Colors.white,
+          ),
+      themedWidgetBuilder: (context, theme) => MaterialApp(
+        theme: theme,
+      //  darkTheme: ,
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     );
   }
 }
